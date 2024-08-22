@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-exemple
+  namespace: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-exemple
+  template:
+    metadata:
+      labels:
+        app: api-exemple
+    spec:
+      containers:
+      - name: node-container
+        image: felipeverbanek/palestra-api-hpa-k8s:0.0.4
+        ports:
+        - containerPort: 3000
+        resources:
+            limits:
+              cpu: "0.5"
+            requests:
+              cpu: "0.25"        
